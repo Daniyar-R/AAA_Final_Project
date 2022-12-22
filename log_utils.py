@@ -26,8 +26,13 @@ def log_bonus(pattern):
 
 if __name__ == "__main__":
 
+    @log
+    def cook():
+        print("cooking...")
+
     @log_bonus("🛵 Доставили за {}с!")
     def bake():
         print("baking...")
 
+    cook()
     bake()

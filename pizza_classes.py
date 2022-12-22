@@ -8,7 +8,10 @@ class Pizza:
     def __init__(self, size, **kwargs):
         if size not in ("L", "XL"):
             raise TypeError("Only L and XL sizes are available")
+        self.name = "Pizza"
         self.size = size
+        self.sauce = kwargs["sauce"]
+        self.cheese = kwargs["cheese"]
         self.ingredients = list(kwargs.values())
 
     def dict(self) -> dict:
@@ -28,9 +31,10 @@ class Margherita(Pizza):
         super().__init__(
             size,
             sauce="tomato sauce",
-            cheeze="mozzarella",
+            cheese="mozzarella",
             toppings="tomatoes"
         )
+        self.name = "Margherita"
 
 
 class Pepperoni(Pizza):
@@ -40,9 +44,10 @@ class Pepperoni(Pizza):
         super().__init__(
             size,
             sauce="tomato sauce",
-            cheeze="mozzarella",
+            cheese="mozzarella",
             toppings="pepperoni"
         )
+        self.name = "Pepperoni"
 
 
 class Hawaiian(Pizza):
@@ -52,10 +57,11 @@ class Hawaiian(Pizza):
         super().__init__(
             size,
             sauce="tomato sauce",
-            cheeze="mozzarella",
+            cheese="mozzarella",
             toppings_1="chicken",
             toppings_2="pineapples",
         )
+        self.name = "Hawaiian"
 
 
 if __name__ == "__main__":

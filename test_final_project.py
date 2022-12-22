@@ -16,10 +16,10 @@ def test_pizza_not_eq_size():
 
 def test_pizza_not_eq_type():
     pizza_1 = Margherita("L")
-    pizza_2 = Pepperoni("XL")
+    pizza_2 = Pepperoni("L")
     assert pizza_1 != pizza_2
 
 
 def test_wrong_size():
     with pytest.raises(TypeError):
-        Pepperoni('S')
+        Pepperoni("S")

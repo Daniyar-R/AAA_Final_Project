@@ -1,6 +1,6 @@
 import click
-from random import randint
 from pizza_classes import Margherita, Pepperoni, Hawaiian
+from log_utils import log_bonus
 
 
 @click.group()
@@ -13,9 +13,29 @@ def cli():
 @click.argument("pizza", nargs=1)
 def order(pizza: str, delivery: bool):
     """Готовит и доставляет пиццу"""
-    print(f"👨‍🍳 Приготовили {pizza} за {randint(0, 60)}с!")
+
+    @log_bonus("👨‍🍳 Приготовили за {}с!")
+    def cook():
+        print(f"Готовим {pizza}...")
+
+    @log_bonus("🛵 Доставили за {}с!")
+    def deliver():
+        print(f"Доставляем {pizza}...")
+
+    pizza_list = list(
+        map(
+            lambda x: x.lower(),
+            [Margherita("L").name, Pepperoni("L").name, Hawaiian("L").name],
+        )
+    )
+
+    if pizza.lower() not in pizza_list:
+        raise TypeError("There is no such pizza")
+
+    cook()
+
     if delivery:
-        print(f"🛵 Доставили {pizza} за {randint(0, 60)}с!")
+        deliver()
 
 
 @cli.command()
